@@ -2,7 +2,20 @@ theory Open_Theory
 imports Pure
 begin
 
-SML_import \<open>structure PolyML = struct val pointerEq = pointer_eq end;\<close>
+SML_import \<open>
+structure PolyML = struct
+  val pointerEq = pointer_eq
+end
+
+structure OS = struct
+  open OS
+  structure Process = struct
+    open OS.Process
+    exception Exit of OS.Process.status
+    fun exit status = raise Exit status
+  end
+end
+\<close>
 
 SML_file "opentheory/src/Random.sig"
 SML_file "opentheory/src/Random.sml"
@@ -198,5 +211,7 @@ SML_file "opentheory/src/Options.sig"
 SML_file "opentheory/src/Options.sml"
 SML_file "opentheory/src/Tool.sig"
 SML_file "opentheory/src/Tool.sml"
+
+SML_export \<open>structure Open_Theory = Tool\<close>
 
 end
