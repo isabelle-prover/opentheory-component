@@ -15,6 +15,11 @@ structure OS = struct
     fun exit status = raise Exit status
   end
 end
+
+structure TextIO = struct
+  open TextIO
+  fun output (_, s) = writeln s
+end
 \<close>
 
 SML_file "opentheory/src/Random.sig"
