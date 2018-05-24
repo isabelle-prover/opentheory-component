@@ -30,8 +30,6 @@ object Open_Theory extends isabelle.Isabelle_Tool.Body {
 
     val opentheory_ml = s"""eval_in_theory "$session.$theory" $eval_ml"""
 
-    println(opentheory_ml)
-
     val proc = ML_Process(
       options = options,
       logic = session,
