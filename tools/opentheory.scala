@@ -38,10 +38,12 @@ object Open_Theory extends isabelle.Isabelle_Tool.Body {
       args = List("--eval", init_ml, "--eval", opentheory_ml)
     )
 
-    proc.result(
+    val res = proc.result(
       progress_stdout = println _,
       progress_stderr = Console.err.println _
     )
+
+    scala.sys.exit(res.rc)
   }
 
 }
