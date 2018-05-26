@@ -2,6 +2,10 @@ theory Open_Theory
 imports Pure
 begin
 
+ML\<open>
+exception Exit of int
+\<close>
+
 SML_import \<open>
 structure PolyML = struct
   val pointerEq = pointer_eq
@@ -11,8 +15,7 @@ structure OS = struct
   open OS
   structure Process = struct
     open OS.Process
-    exception Exit of OS.Process.status
-    fun exit status = raise Exit status
+    fun exit status = raise Exit (if isSuccess status then 0 else 1)
   end
 end
 
@@ -218,5 +221,12 @@ SML_file "opentheory/src/Tool.sig"
 SML_file "opentheory/src/Tool.sml"
 
 SML_export \<open>structure Open_Theory = Tool\<close>
+
+ML_export \<open>
+  fun open_theory args =
+    Command_Line.tool (fn () =>
+      (Open_Theory.main args; 0)
+        handle Exit c => c)
+\<close>
 
 end
