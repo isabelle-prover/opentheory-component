@@ -1,3 +1,5 @@
-session Open_Theory = Pure +
+chapter Open_Theory
+
+session Open_Theory_Tool = Pure +
   theories
-    Open_Theory
+    Open_Theory_Tool

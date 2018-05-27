@@ -1,4 +1,4 @@
-theory Open_Theory
+theory Open_Theory_Tool
 imports Pure
 begin
 

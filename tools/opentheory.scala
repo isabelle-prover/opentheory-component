@@ -6,7 +6,7 @@ object Open_Theory extends isabelle.Isabelle_Tool.Body {
 
   lazy val options = Options.init()
 
-  val session = "Open_Theory"
+  val session = "Open_Theory_Tool"
 
   def apply(args: List[String]): Unit = {
     val results = Build.build(
